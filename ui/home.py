@@ -1,15 +1,16 @@
-from PIL import Image, ImageTk
 from tkinter import Tk, Listbox, Scrollbar
 from tkinter.ttk import Label, Button, Entry
+from PIL import Image, ImageTk  # type: ignore
 
 from ui.auth import LoginForm, RegisterForm
-from ui.settings.home import width, height, x, y
+from ui.settings.home import width, height, x, y, img_width, img_height
 
 
 # Main Window
 class App(Tk):
     def __init__(self):
         super().__init__()
+
         # Main Window Settings
         self.title('Todo App')
         self.geometry(f'{width}x{height}+{x}+{y}')
@@ -17,16 +18,15 @@ class App(Tk):
 
         # Set Up Background
         self.image = Image.open('ui/img/home.jpg')
-        self.image = self.image.resize((800, 500), Image.ANTIALIAS)
+        self.image = self.image.resize((img_width, img_height), Image.ANTIALIAS)
         self.tkImage = ImageTk.PhotoImage(
             image=self.image,
-            width=800,
-            height=500
+            width=img_width,
+            height=img_height
         )
         self.background = Label(image=self.tkImage)
         self.background.place(x=0, y=0)
 
-        # Buttons foe Auth
         # Login Button
         self.login_btn = Button(
             self,
@@ -36,8 +36,8 @@ class App(Tk):
         self.login_btn.place(
             width=80,
             height=30,
-            x=20,
-            y=20
+            x=800,
+            y=470
         )
 
         # Register Button
@@ -49,26 +49,9 @@ class App(Tk):
         self.register_btn.place(
             width=80,
             height=30,
-            x=225,
-            y=245
+            x=800,
+            y=510
         )
-
-        # Logout Button
-        self.logout_btn = Button(
-            self,
-            text='Logout',
-            command=lambda: self.logout()
-        )
-
-        # List box
-        self.listbox = Listbox()
-
-        # Scroll Bar
-        self.scrollbar = Scrollbar()
-
-        # Settings for listbox and scrollbar
-        self.listbox.config(yscrollcommand=self.scrollbar.set)
-        self.scrollbar.config(command=self.listbox.yview)
 
         # Exit Button
         self.exit_button = Button(
@@ -76,12 +59,11 @@ class App(Tk):
             text='Exit',
             command=lambda: self.quit()
         )
-
         self.exit_button.place(
             width=80,
             height=30,
-            x=700,
-            y=450
+            x=800,
+            y=550
         )
 
     def login(self):
@@ -89,10 +71,8 @@ class App(Tk):
         LoginForm()
 
     def register(self):
+        # self.register_btn.state(['disabled'])
         RegisterForm()
-
-    def logout(self):
-        pass
 
     def run(self):
         self.mainloop()

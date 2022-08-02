@@ -1,4 +1,4 @@
-# Main Window Settings
-width = 800
-height = 500
-x = y = 100
+# Register Window Settings
+width = 900
+height = 600
+x = y = 50
