@@ -1,4 +1,4 @@
 # Login Window Settings
-width = 900
-height = 600
+width = 1400
+height = 700
 x = y = 50

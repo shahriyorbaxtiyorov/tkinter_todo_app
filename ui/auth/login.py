@@ -1,31 +1,32 @@
-from tkinter import Tk
-from tkinter.ttk import Label, Button, Entry
+from tkinter import Tk, Checkbutton, StringVar, W
+from tkinter.ttk import Label, Button, Entry, Frame, Checkbutton
 
 from ui.settings.login import width, height, x, y
 
 
 # Login Window
-class LoginForm(Tk):
-    def __init__(self):
-        super().__init__()
+class LoginForm(Frame):
+    def __init__(self, container):
+        super().__init__(container)
 
-        # Main Window Settings
-        self.title('Login Page')
-        self.geometry(f'{width}x{height}+{x}+{y}')
-        self.resizable(width=False, height=False)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(0, weight=3)
+
+        # Username:
+        self.username = StringVar()
+        self.username_label = Label()
+        self.username_entry = Entry(self, width=30)
+
+        # Password:
+        self.password = StringVar()
+        self.password_label = Label()
+        self.password_entry = Entry(self, width=30)
+
+        # Login Button
+        self.login_btn = Button()
 
         # Exit Button
-        self.exit_button = Button(
-            self,
-            text='Exit',
-            command=lambda: self.quit()
-        )
-        self.exit_button.place(
-            width=80,
-            height=30,
-            x=700,
-            y=450
-        )
+        self.exit_btn = Button()
 
     def run(self):
-        self.mainloop()
+        return self

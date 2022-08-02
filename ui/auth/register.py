@@ -1,11 +1,11 @@
-from tkinter import Tk
+from tkinter import Tk, Frame
 from tkinter.ttk import Label, Button, Entry
 
 from ui.settings.register import width, height, x, y
 
 
 # Register Window
-class RegisterForm(Tk):
+class RegisterForm(Frame):
     def __init__(self):
         super().__init__()
 
@@ -23,8 +23,8 @@ class RegisterForm(Tk):
         self.exit_button.place(
             width=80,
             height=30,
-            x=700,
-            y=450
+            x=1300,
+            y=650
         )
 
     def run(self):

@@ -1,6 +1,6 @@
+from PIL import Image, ImageTk  # type: ignore
 from tkinter import Tk, Listbox, Scrollbar
 from tkinter.ttk import Label, Button, Entry
-from PIL import Image, ImageTk  # type: ignore
 
 from ui.auth import LoginForm, RegisterForm
 from ui.settings.home import width, height, x, y, img_width, img_height
@@ -36,8 +36,8 @@ class App(Tk):
         self.login_btn.place(
             width=80,
             height=30,
-            x=800,
-            y=470
+            x=1300,
+            y=570
         )
 
         # Register Button
@@ -49,8 +49,8 @@ class App(Tk):
         self.register_btn.place(
             width=80,
             height=30,
-            x=800,
-            y=510
+            x=1300,
+            y=610
         )
 
         # Exit Button
@@ -62,13 +62,14 @@ class App(Tk):
         self.exit_button.place(
             width=80,
             height=30,
-            x=800,
-            y=550
+            x=1300,
+            y=650
         )
 
     def login(self):
         self.login_btn.state(['disabled'])
-        LoginForm()
+        login_form = LoginForm(self).run()
+        login_form.place(x=20, y=20)
 
     def register(self):
         # self.register_btn.state(['disabled'])
